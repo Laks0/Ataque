@@ -14,6 +14,13 @@ function farms:update(p,dt)
             if mouse_en(width/2-buttonW/2,height-64,buttonW,64) and pres.L then
                 players[p].mny = players[p].mny + 1
             end
+        else
+            for j, e in ipairs(players[3-p].soldiers) do
+                if dist(f.x,f.y,e.x,e.y) < 80 then
+                    table.remove(players[p].farms,l)
+                    players[p].mny = players[p].mny + 2
+                end
+            end
         end
     end
 end

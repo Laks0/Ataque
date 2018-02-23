@@ -1,10 +1,11 @@
 require "objects/farms"
+require "objects/soldiers"
 
 players = {}
 
 function players:create(turn)
     local p = {}
-    p.mny = 20
+    p.mny = 25
     p.turn = turn or #self+1
     p.r = love.math.random(0,255)
     p.g = love.math.random(0,255)
@@ -18,6 +19,7 @@ function players:create(turn)
     p.sx = 0
     p.sy = 0
     p.farms = {}
+    p.soldiers = {}
     table.insert(self,p)
 end
 
@@ -26,8 +28,11 @@ function players:update(dt)
         if p.turn == turn then
             if pres.L then
                 if p.sel then
-                    if mouse_en(0,height-line,f:getWidth("   CREAR GRANJA   "),line) then
+                    if mouse_en(0,height-line,f:getWidth("   CREAR GRANJA   "),line) and p.mny >= 5 then
                         farms:create(p.turn,p.sx,p.sy)
+                        p.sel = false
+                    elseif mouse_en(width-f:getWidth("   CREAR SOLDADO   "),height-line,f:getWidth("   CREAR SOLDADO   "),line) then
+                        soldiers:create(p.turn,p.sx,p.sy)
                         p.sel = false
                     else
                         p.sel = false
@@ -44,6 +49,7 @@ function players:update(dt)
             end
         end
         farms:update(p.turn,dt)
+        soldiers:update(p.turn,dt)
     end
 end
 
@@ -55,10 +61,11 @@ function players:draw()
                 render:circle(1,"fill",p.sx,p.sy,5,4,255,255,0)
                 render:rectangle(2,"fill",0,height-line,f:getWidth("   CREAR GRANJA   "),line,3,0,0,0)
                 render:text(2,"   CREAR GRANJA   ",0,height-line,4)
-                render:rectangle(2,"fill",width-f:getWidth("   CREAR X   "),height-line,f:getWidth("   CREAR X   "),line,3,0,0,0)
-                render:text(2,"   CREAR X   ",width- f:getWidth("   CREAR X   "),height-line,4)
+                render:rectangle(2,"fill",width-f:getWidth("   CREAR SOLDADO   "),height-line,f:getWidth("   CREAR SOLDADO   "),line,3,0,0,0)
+                render:text(2,"   CREAR SOLDADO   ",width- f:getWidth("   CREAR SOLDADO   "),height-line,4)
             end
         end
         farms:draw(p.turn)
+        soldiers:draw(p.turn)
     end
 end
