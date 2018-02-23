@@ -4,11 +4,22 @@ function game_load()
     players:create(1)
     players:create(2)
 
+    border = width/2
+
     turn = 1
 end
 
 function game_update(dt)
     players:update(dt)
+
+    if pres.L and mouse_en(width/2-buttonW/2,height-64,buttonW,64) then
+        players[turn].sel = false
+        if turn >= #players then turn = 1 else
+            turn = turn + 1
+        end
+    end
+
+    pres.L = false
 end
 
 function game_draw()
@@ -17,17 +28,19 @@ function game_draw()
 
     players:draw()
 
-    buttonW = f:getWidth("  FIN TURNO  ")
+    --Field
+    render:line(1,border,0,border,height,5)
+    render:rectangle(1,"fill",0,0,border,height,4,players[1].r,players[1].g,players[1].b,100)
+    render:rectangle(1,"fill",border,0,width-border,height,4,players[2].r,players[2].g,players[2].b,100)
+
+    --HUD
+    buttonW = f:getWidth("  FIN TURNO   ")
     render:rectangle(2,"fill",width/2-buttonW/2,height-64,buttonW,64,3,0,0,0)
-    render:text(2,"   FIN TURNO   ",width/2-buttonW/2,height-64,4)
+    render:text(2,"   FIN TURNO   ",width/2-buttonW/2,height-32,4)
 end
 
 function love.mousepressed(x, y, b)
     if b == 1 then
-        if mouse_en(0,0,1280,720) then
-            if turn >= #players then turn = 1 else
-                turn = turn + 1
-            end
-        end
+        pres.L = true
     end
 end

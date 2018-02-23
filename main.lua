@@ -11,18 +11,22 @@ height = 720
 wres = love.graphics.getWidth()/width
 hres = love.graphics.getHeight()/height
 
-mouse = {
-    x = (love.mouse.getX() - camera.x * camera.scaleX) / wres,
-    y = (love.mouse.getY() - camera.y * camera.scaleX) / hres
-}
+pres = {}
 
 function love.load()
     canvas = love.graphics.newCanvas(width, height)
     state = "game"
     game_load()
+
+    love.graphics.setFont(love.graphics.newFont("assets/Beholder.ttf",35))
 end
 
 function love.update(dt)
+    mouse = {
+        x = (love.mouse.getX() - camera.x * camera.scaleX) / wres,
+        y = (love.mouse.getY() - camera.y * camera.scaleX) / hres
+    }
+
     render:clear()
     if state == "game" then
         game_update(dt)
