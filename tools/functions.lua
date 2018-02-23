@@ -1,8 +1,4 @@
-function mouse_en(fx,fy,fw,fh)
-    local x = fx - camera.x * camera.scaleX
-    local y = fy - camera.y * camera.scaleX
-    local w = fw-- / camera.scaleX
-    local h = fh-- / camera.scaleY
+function mouse_en(x,y,w,h)
     return mouse.x > x and mouse.x < x + w and mouse.y > y and mouse.y < y + h
 end
 
