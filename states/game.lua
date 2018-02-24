@@ -23,9 +23,6 @@ function game_update(dt)
 end
 
 function game_draw()
-    f = love.graphics.getFont()
-    line = f:getHeight("A")
-
     players:draw()
 
     --Field

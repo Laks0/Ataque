@@ -4,6 +4,7 @@ require "tools/TSerial"
 render = require "tools/render"
 
 require "states/game"
+require "states/menu"
 
 width = 1280
 height = 720
@@ -15,13 +16,16 @@ pres = {}
 
 function love.load()
     canvas = love.graphics.newCanvas(width, height)
-    state = "game"
+    state = "menu"
     game_load()
+    menu_load()
 
     love.graphics.setFont(love.graphics.newFont("assets/Beholder.ttf",35))
 end
 
 function love.update(dt)
+    f = love.graphics.getFont()
+    line = f:getHeight("A")
     mouse = {
         x = (love.mouse.getX() - camera.x * camera.scaleX) / wres,
         y = (love.mouse.getY() - camera.y * camera.scaleX) / hres
@@ -30,12 +34,16 @@ function love.update(dt)
     render:clear()
     if state == "game" then
         game_update(dt)
+    elseif state == "menu" then
+        menu_update(dt)
     end
 end
 
 function love.draw()
     if state == "game" then
         game_draw()
+    elseif state == "menu" then
+        menu_draw()
     end
 
     love.graphics.setCanvas(canvas)
