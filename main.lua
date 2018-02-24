@@ -37,6 +37,8 @@ function love.update(dt)
     elseif state == "menu" then
         menu_update(dt)
     end
+
+    pres.L = false
 end
 
 function love.draw()

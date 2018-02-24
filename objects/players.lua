@@ -36,7 +36,7 @@ function players:update(dt)
                         soldiers:create(p.turn,p.sx,p.sy,1)
                         p.sel = false
                     elseif mouse_en(960-f:getWidth("   CREAR GENERAL   ")/2,height-line,f:getWidth("   CREAR GENERAL   "),line)
-                    and p.mny >= 15 then
+                    and p.mny >= 20 then
                         soldiers:create(p.turn,p.sx,p.sy,2)
                         p.sel = false
                     else

@@ -18,8 +18,6 @@ function game_update(dt)
             turn = turn + 1
         end
     end
-
-    pres.L = false
 end
 
 function game_draw()

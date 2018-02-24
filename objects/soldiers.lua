@@ -11,7 +11,7 @@ function soldiers:create(p,x,y,t)
     s.sel = false
     s.rad = 0
     table.insert(players[p].soldiers,s)
-    players[p].mny = players[p].mny - 10 - 5*(s.t-1)
+    players[p].mny = players[p].mny - 10 - 10*(s.t-1)
 end
 
 function soldiers:update(p,dt)
