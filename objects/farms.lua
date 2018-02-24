@@ -12,7 +12,7 @@ function farms:update(p,dt)
     for l, f in ipairs(players[p].farms) do
         if p == turn then
             if mouse_en(width/2-buttonW/2,height-64,buttonW,64) and pres.L then
-                players[p].mny = players[p].mny + 1
+                players[p].mny = players[p].mny + 2
             end
         else
             for j, e in ipairs(players[3-p].soldiers) do

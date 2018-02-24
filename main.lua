@@ -37,10 +37,7 @@ function love.draw()
     if state == "game" then
         game_draw()
     end
-    draw()
-end
 
-function draw()
     love.graphics.setCanvas(canvas)
     love.graphics.clear()
     camera:set()
@@ -52,5 +49,7 @@ function draw()
     render:render(2)
     love.graphics.setCanvas()
     love.graphics.setColor(255,255,255)
+    wres = love.graphics.getWidth()/width
+    hres = love.graphics.getHeight()/height
     love.graphics.draw(canvas,0,0,0,wres,hres)
 end

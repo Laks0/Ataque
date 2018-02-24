@@ -31,8 +31,13 @@ function players:update(dt)
                     if mouse_en(0,height-line,f:getWidth("   CREAR GRANJA   "),line) and p.mny >= 5 then
                         farms:create(p.turn,p.sx,p.sy)
                         p.sel = false
-                    elseif mouse_en(width-f:getWidth("   CREAR SOLDADO   "),height-line,f:getWidth("   CREAR SOLDADO   "),line) then
-                        soldiers:create(p.turn,p.sx,p.sy)
+                    elseif mouse_en(width-f:getWidth("   CREAR SOLDADO   "),height-line,f:getWidth("   CREAR SOLDADO   "),line)
+                    and p.mny >= 10 then
+                        soldiers:create(p.turn,p.sx,p.sy,1)
+                        p.sel = false
+                    elseif mouse_en(960-f:getWidth("   CREAR GENERAL   ")/2,height-line,f:getWidth("   CREAR GENERAL   "),line)
+                    and p.mny >= 15 then
+                        soldiers:create(p.turn,p.sx,p.sy,2)
                         p.sel = false
                     else
                         p.sel = false
@@ -63,6 +68,8 @@ function players:draw()
                 render:text(2,"   CREAR GRANJA   ",0,height-line,4)
                 render:rectangle(2,"fill",width-f:getWidth("   CREAR SOLDADO   "),height-line,f:getWidth("   CREAR SOLDADO   "),line,3,0,0,0)
                 render:text(2,"   CREAR SOLDADO   ",width- f:getWidth("   CREAR SOLDADO   "),height-line,4)
+                render:rectangle(2,"fill",960-f:getWidth("   CREAR GENERAL   ")/2,height-line,f:getWidth("   CREAR GENERAL   "),line,3,0,0,0)
+                render:text(2,"   CREAR GENERAL   ",960-f:getWidth("   CREAR GENERAL   ")/2,height-line,4)
             end
         end
         farms:draw(p.turn)
