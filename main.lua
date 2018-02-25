@@ -14,6 +14,8 @@ hres = love.graphics.getHeight()/height
 
 pres = {}
 
+music = love.audio.newSource("assets/BCKG.wav")
+
 function love.load()
     canvas = love.graphics.newCanvas(width, height)
     state = "menu"
@@ -21,6 +23,9 @@ function love.load()
     menu_load()
 
     love.graphics.setFont(love.graphics.newFont("assets/Beholder.ttf",35))
+
+    music:setLooping(true)
+    music:play()
 end
 
 function love.update(dt)
