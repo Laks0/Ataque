@@ -10,6 +10,12 @@ function game_load()
 end
 
 function game_update(dt)
+    if border <= 0 or border >= width and pres.L then
+        table.remove(players,2)
+        table.remove(players,1)
+        game_load()
+    end
+
     players:update(dt)
 
     if pres.L and mouse_en(width/2-buttonW/2,height-64,buttonW,64) then

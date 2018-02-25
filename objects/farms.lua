@@ -28,6 +28,6 @@ end
 function farms:draw(p)
     for l, f in ipairs(players[p].farms) do
         local pl = players[p]
-        render:circle(1,"fill",f.x,f.y,16,4,pl.r,pl.g,pl.b)
+        render:img(1,"assets/farm.png",f.x-16,f.y-16,4,pl.r,pl.g,pl.b)
     end
 end
