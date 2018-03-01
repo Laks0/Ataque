@@ -18,7 +18,7 @@ function farms:update(p,dt)
             for j, e in ipairs(players[3-p].soldiers) do
                 if dist(f.x,f.y,e.x,e.y) < 32 then
                     table.remove(players[p].farms,l)
-                    players[p].mny = players[p].mny + 2
+                    players[3-p].mny = players[3-p].mny + 5
                 end
             end
         end

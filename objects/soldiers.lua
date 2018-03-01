@@ -50,7 +50,7 @@ function soldiers:update(p,dt)
                     s.rad = 128
                     if s.t == 2 then s.rad = 200 end
                     if (p == 1 and s.x>border) or (p == 2 and s.x<border) then
-                        border = border + (50*s.t) * -players[p].side
+                        border = border + (100*s.t) * -players[p].side
                     end
                 end
             end
@@ -61,7 +61,7 @@ function soldiers:update(p,dt)
             for j, e in ipairs(players[3-p].soldiers) do
                 if dist(s.x,s.y,e.x,e.y) < 32 then
                     table.remove(players[p].soldiers,l)
-                    players[p].mny = players[p].mny + 2
+                    players[3-p].mny = players[3-p].mny + 5*s.t
                 end
             end
         end
