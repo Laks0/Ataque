@@ -49,7 +49,13 @@ function players:update(dt)
                 end
                 --end turn
                 if mouse_en(width/2-buttonW/2,height-64,buttonW,64) then
-
+                    local incr = 0
+                    for _, s in pairs(p.soldiers) do
+                        if (p.turn == 1 and s.x > border) or (p.turn == 2 and s.x < border) then
+                            incr = incr + 100 * s.t * -p.side
+                        end
+                    end
+                    border = border + incr
                 end
             end
         end

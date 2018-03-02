@@ -47,11 +47,7 @@ function soldiers:update(p,dt)
                     end
                 end
                 if mouse_en(width/2-buttonW/2,height-64,buttonW,64) then
-                    s.rad = 128
-                    if s.t == 2 then s.rad = 200 end
-                    if (p == 1 and s.x>border) or (p == 2 and s.x<border) then
-                        border = border + (100*s.t) * -players[p].side
-                    end
+                    s.rad = 128 + (s.t-1)*72
                 end
             end
             if s.rad < 16 then
